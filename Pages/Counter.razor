@@ -1,4 +1,5 @@
 ﻿@page "/counter"
+@inject IJSRuntime JSRuntime
 
 <PageTitle>Counter</PageTitle>
 
@@ -8,11 +9,22 @@
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
+<br />
+
+ <div id="chart-container">FusionCharts XT will load here v1!</div>
+
+<button class="btn btn-primary" @onclick="CallJsMethod">Render Charts now</button>
+
+
 @code {
     private int currentCount = 0;
 
     private void IncrementCount()
     {
         currentCount++;
+    }
+    private async Task CallJsMethod()
+    {
+        await JSRuntime.InvokeVoidAsync("GetStudentName");
     }
 }
